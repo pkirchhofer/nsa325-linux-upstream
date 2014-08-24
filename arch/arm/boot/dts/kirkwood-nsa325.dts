@@ -230,6 +230,7 @@
 		green-sata1 {
 			label = "nsa325:green:sata1";
 			gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "sata-disk";
 		};
 
 		red-sata1 {
