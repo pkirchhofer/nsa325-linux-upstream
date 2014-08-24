@@ -1230,6 +1230,10 @@ package-dir	:= scripts/package
 rpm: include/config/kernel.release FORCE
 	$(Q)$(MAKE) $(build)=$(package-dir) $@
 
+nsa325: zImage kirkwood-nsa325.dtb
+	cat arch/arm/boot/zImage arch/arm/boot/dts/kirkwood-nsa325.dtb > zImage-dtb
+	mkimage -A arm -O linux -T kernel -C none -a 0x00008000 -e 0x00008000 \
+	  -n Linux-${KERNELVERSION} -d zImage-dtb uImage-dtb
 
 # Brief documentation of the typical targets used
 # ---------------------------------------------------------------------------
