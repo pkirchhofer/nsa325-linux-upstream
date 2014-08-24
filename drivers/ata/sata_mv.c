@@ -72,6 +72,7 @@
 #include <scsi/scsi_cmnd.h>
 #include <scsi/scsi_device.h>
 #include <linux/libata.h>
+#include <linux/leds.h>
 
 #define DRV_NAME	"sata_mv"
 #define DRV_VERSION	"1.28"
@@ -1169,6 +1170,8 @@ static void mv_start_edma(struct ata_port *ap, void __iomem *port_mmio,
 			 struct mv_port_priv *pp, u8 protocol)
 {
 	int want_ncq = (protocol == ATA_PROT_NCQ);
+
+	ledtrig_sata_activity();
 
 	if (pp->pp_flags & MV_PP_FLAG_EDMA_EN) {
 		int using_ncq = ((pp->pp_flags & MV_PP_FLAG_NCQ_EN) != 0);
