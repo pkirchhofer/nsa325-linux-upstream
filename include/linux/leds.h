@@ -309,6 +309,12 @@ static inline void ledtrig_flash_ctrl(bool on) {}
 static inline void ledtrig_torch_ctrl(bool on) {}
 #endif
 
+#ifdef CONFIG_LEDS_TRIGGER_SATA_DISK
+extern void ledtrig_sata_activity(void);
+#else
+#define ledtrig_sata_activity() do {} while(0)
+#endif
+
 /*
  * Generic LED platform data for describing LED names and default triggers.
  */
